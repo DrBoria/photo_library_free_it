@@ -3,10 +3,43 @@
   <body>
     <main>
       <h1>Basic app</h1>
-      <img height="200" width="300" src="./imgs/index.jpg" alt="">
-      <div>
-        a basic app with comic font in scss
-      </div>
+      <img height="200" width="300" src="./imgs/index.jpg" alt="" />
+      <div>a basic app with comic font in scss</div>
     </main>
+
+    <script>
+      fetch("https://api.pexels.com/v1/search?query=people", {
+        headers: {
+          Authorization:
+            "563492ad6f91700001000001617375f6f0754a548e896eaf55a1b324",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          debugger;
+          for (let index = 0; index < response.photos.length; index++) {
+            const element = response.photos[index];
+            
+            // Create Image
+            const imageOfPeople = document.createElement('img');
+            imageOfPeople.src = element.src.original;
+            imageOfPeople.width = 200;
+            imageOfPeople.height = 200;
+
+            document.body.appendChild(imageOfPeople);
+          }
+        })
+        .catch((error) => {
+          debugger;
+          console.log(error);
+        });
+
+
+
+
+
+    </script>
   </body>
 </html>
